@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" tools:context=".OldCam">
+	<item android:id="@+id/action_export" android:title="Export"
+			android:orderInCategory="1" />
+	<item android:id="@+id/action_purge" android:title="Purge"
+			android:orderInCategory="2" />
+</menu>
