@@ -1,0 +1,9 @@
+OldCam -- bringing metadata to the film age.
+
+OldCam is meant to help film photographers to store technical details about
+their shots, just like digital cameras store EXIF metadata in files.
+
+For each shot, you can store the date, the aperture, the shutter speed, and
+notes.
+
+The database can be exported as a CSV to allow an easy processing afterwards.
