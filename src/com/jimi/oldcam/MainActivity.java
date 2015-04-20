@@ -168,8 +168,8 @@ public class MainActivity extends Activity
 		String data[] = db.get_pic(roll, pic); 
 		TextView tv_roll = (TextView) findViewById(R.id.tv_roll);
 		TextView tv_pic = (TextView) findViewById(R.id.tv_pic);
-		tv_roll.setText("Roll #" + String.valueOf(roll));
-		tv_pic.setText("Pic #" + String.valueOf(pic));
+		tv_roll.setText("Roll: " + String.valueOf(roll));
+		tv_pic.setText("Frame: " + String.valueOf(pic));
 		String sdate = data[0];
 		et_date.setText(data[0]);
 		et_aperture.setText(data[1]);

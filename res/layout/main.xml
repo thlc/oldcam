@@ -21,7 +21,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="40dp"
 				android:id="@+id/tv_roll"
-				android:text="Roll 1"
+				android:text="Roll: 1"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_alignParentTop="true"
 				android:layout_alignParentLeft="true"
@@ -34,7 +34,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="40dp"
 				android:id="@+id/tv_pic"
-				android:text="Pic 1"
+				android:text="Frame: 1"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_alignParentTop="true"
 				android:layout_alignParentRight="true"
@@ -74,8 +74,7 @@
 		</LinearLayout>
 
 
-
-		<ScrollView
+        <ScrollView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:id="@+id/scrollView"
@@ -93,7 +92,8 @@
 						android:layout_height="wrap_content"
 						android:textAppearance="?android:attr/textAppearanceMedium"
 						android:text="Date"
-						android:id="@+id/textView1" />
+						android:id="@+id/textView1"
+                        android:minWidth="75dp" />
 					<EditText
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -116,8 +116,10 @@
 						android:layout_height="wrap_content"
 						android:textAppearance="?android:attr/textAppearanceMedium"
 						android:text="Aperture"
-						android:id="@+id/textView" />
-					<EditText
+						android:id="@+id/textView"
+                        android:minWidth="75dp" />
+
+                    <EditText
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:inputType="date"
@@ -133,8 +135,9 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:text="Shutter speed"
-						android:id="@+id/textView" />
+						android:text="Shutter"
+						android:id="@+id/textView"
+                        android:minWidth="75dp" />
 					<EditText
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -153,7 +156,8 @@
 						android:layout_height="wrap_content"
 						android:textAppearance="?android:attr/textAppearanceMedium"
 						android:text="Notes"
-						android:id="@+id/textView" />
+						android:id="@+id/textView"
+                        android:minWidth="75dp" />
 					<EditText
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -164,5 +168,6 @@
 
 			</LinearLayout>
 		</ScrollView>
-	</LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
