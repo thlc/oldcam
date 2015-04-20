@@ -3,7 +3,9 @@ package com.jimi.oldcam;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.os.Bundle; 
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener; // what do i do if need view.clicklistener ?
 import android.content.Context;
@@ -11,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.text.InputType;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
@@ -25,6 +29,10 @@ public class MainActivity extends Activity
 
 	long roll;
 	long pic;
+
+    boolean gpsEnabled;
+
+    LocationManager locationManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -43,7 +51,7 @@ public class MainActivity extends Activity
 		// this.requestWindowFeature(Window.FEATURE_NO_TITLE); // seems sad without it
 		setContentView(R.layout.main);
 		init();
-	} 
+	}
   
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,6 +100,17 @@ public class MainActivity extends Activity
 	} 
 
 	private void init() {
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        Switch sw_gps = (Switch) findViewById(R.id.sw_gps);
+        sw_gps.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                gpsEnabled = isChecked;
+                display();
+            }
+        });
+
 		db = new DB(this);
 		roll = db.getParamInt("roll");
 		if (roll == -1) { roll = 1; };
@@ -164,10 +183,11 @@ public class MainActivity extends Activity
 		EditText et_date = (EditText) findViewById(R.id.et_date);		
 		EditText et_aperture = (EditText) findViewById(R.id.et_aperture);		
 		EditText et_shutter_speed = (EditText) findViewById(R.id.et_shutter_speed);		
-		EditText et_notes = (EditText) findViewById(R.id.et_notes);		
+		EditText et_notes = (EditText) findViewById(R.id.et_notes);
 		String data[] = db.get_pic(roll, pic); 
 		TextView tv_roll = (TextView) findViewById(R.id.tv_roll);
 		TextView tv_pic = (TextView) findViewById(R.id.tv_pic);
+        TextView tv_gps_coords = (TextView) findViewById(R.id.tv_gps_coords);
 		tv_roll.setText("Roll: " + String.valueOf(roll));
 		tv_pic.setText("Frame: " + String.valueOf(pic));
 		String sdate = data[0];
@@ -183,6 +203,14 @@ public class MainActivity extends Activity
 		}
 		db.setParamInt("roll", roll);
 		db.setParamInt("pic", pic);
+
+        if (gpsEnabled) {
+            String locationProvider = LocationManager.GPS_PROVIDER;
+            Location location = locationManager.getLastKnownLocation(locationProvider);
+            String strLongitude = location.convert(location.getLongitude(), location.FORMAT_SECONDS);
+            String strLatitude = location.convert(location.getLatitude(), location.FORMAT_SECONDS);
+            tv_gps_coords.setText(strLatitude + "\n" + strLongitude);
+        }
 	}
 
 	public void ask_for_roll() {
